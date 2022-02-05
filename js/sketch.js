@@ -5,7 +5,7 @@ const W = 1024, H = 1024;
 const halfH = H / 2, halfW = W / 2;
 const textX = 80 - halfW, textY = 80 - halfH;
 
-let asteroidButton;
+let asteroidButton, resetButton;
 
 function setup() {
 	createCanvas(W, H);
@@ -19,6 +19,9 @@ function setup() {
 	asteroidButton = createButton('Launch Asteroid');
 	asteroidButton.position(halfW - 200, H - 50);
 	asteroidButton.mousePressed(launchAsteroid);
+	resetButton = createButton('Reset Simulation');
+	resetButton.position(halfW - 50, H - 50);
+	resetButton.mousePressed(() => window.location.reload());
 }
 
 function draw() {
@@ -96,7 +99,7 @@ function launchAsteroid() {
 		radius: Math.random() * 5 + 15,
 		color: '#808080',
 		position: { x: halfW - 100, y: halfH - 100 },
-		velocity: { x: - Math.random() * 2, y: - Math.random() * 2 },
+		velocity: { x: - Math.random() * 2, y: 0.5 - Math.random() * 2 },
 	});
 	system.push(asteroid);
 }
